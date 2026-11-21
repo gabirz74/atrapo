@@ -1,0 +1,9 @@
+node_modules
+out
+dist
+# downloaded by `npm run fetch-tools` (hundreds of MB)
+resources/bin
+# Spotify keys bundled into the installers: never commit
+resources/spotify.json
+build/.icon-tmp-*
+.env*

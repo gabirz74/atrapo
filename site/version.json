@@ -1,0 +1,21 @@
+{
+  "version": "1.0.1",
+  "date": "2026-11-21",
+  "downloads": {
+    "mac-arm64": {
+      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-mac-apple-silicon.dmg",
+      "size": 183923255,
+      "sha256": "12fbf26d83083e07700bb3d594c5cbc09e9358929cdf95d04021ef0c28e8ac40"
+    },
+    "mac-x64": {
+      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-mac-intel.dmg",
+      "size": 197000940,
+      "sha256": "9820363827d8651ed32c4e9a680607dec334efc8b015e48932bb6d18fe3f1cfe"
+    },
+    "win-x64": {
+      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-windows-setup.exe",
+      "size": 171420858,
+      "sha256": "622bd61b215c7c01f88f193b934ac50617fe9b9e616d7e56beba5e81c120580a"
+    }
+  }
+}

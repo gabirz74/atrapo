@@ -1,0 +1,112 @@
+name: Build installers
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run fetch-tools win32-x64
+      - name: Add Spotify keys (kept out of git)
+        shell: bash
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: |
+          if [ -n "$SPOTIFY_CLIENT_ID" ]; then
+            printf '{"clientId":"%s","clientSecret":"%s"}' "$SPOTIFY_CLIENT_ID" "$SPOTIFY_CLIENT_SECRET" > resources/spotify.json
+          fi
+      - run: npm run build
+      - run: node scripts/build-dist.mjs win
+      - name: Upload unsigned installer
+        id: upload-unsigned
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer-unsigned
+          path: app/dist/Atrapo-*-windows-setup.exe
+      # Free signing by SignPath Foundation. Enabled once the project is approved:
+      # set the repository variable SIGNPATH_ENABLED to "true" and add the secret SIGNPATH_API_TOKEN.
+      - name: Sign installer with SignPath
+        if: ${{ vars.SIGNPATH_ENABLED == 'true' }}
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: atrapo
+          signing-policy-slug: release-signing
+          artifact-configuration-slug: initial
+          github-artifact-id: ${{ steps.upload-unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed
+      - name: Collect final installer
+        shell: bash
+        run: |
+          mkdir -p ../out-final
+          if [ -d signed ]; then cp signed/*.exe ../out-final/; else cp dist/Atrapo-*-windows-setup.exe ../out-final/; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: out-final/*.exe
+
+  mac:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - run: npm run fetch-tools darwin-arm64 darwin-x64
+      - name: Add Spotify keys (kept out of git)
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: |
+          if [ -n "$SPOTIFY_CLIENT_ID" ]; then
+            printf '{"clientId":"%s","clientSecret":"%s"}' "$SPOTIFY_CLIENT_ID" "$SPOTIFY_CLIENT_SECRET" > resources/spotify.json
+          fi
+      - run: npm run build
+      - run: node scripts/build-dist.mjs mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac-installers
+          path: app/dist/Atrapo-*.dmg
+
+  release:
+    needs: [windows, mac]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: "{windows-installer,mac-installers}"
+          merge-multiple: true
+          path: files
+      - name: Checksums
+        run: cd files && sha256sum * > SHA256SUMS.txt
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: files/*
+          generate_release_notes: true

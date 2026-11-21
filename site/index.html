@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atrapo — descarga música, vídeo e imágenes</title>
+    <meta name="description" content="Atrapo es una app gratuita para Mac y Windows: pega un enlace y descarga música, vídeo e imágenes en máxima calidad. Todo ocurre en tu ordenador." />
+    <meta name="theme-color" content="#2740f5" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-512.png" />
+    <link rel="preload" href="/bricolage.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="/"><img src="/icon.svg" alt="" width="26" height="26" />Atrapo</a>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </header>
+
+      <main>
+        <div class="hero">
+          <h1 class="sr" data-i18n="h1"></h1>
+          <p class="field" aria-hidden="true"><span class="ph" id="ph">Pega un enlace</span><span class="typed" id="typed"></span><span class="caret"></span></p>
+          <div class="rule"></div>
+          <p class="lede reveal d1" data-i18n="lede"></p>
+          <div class="cta reveal d2">
+            <a class="btn" id="main-dl" href="#descargas" aria-disabled="true"><span id="main-label" data-i18n="dl.default"></span></a>
+            <small id="main-meta"></small>
+          </div>
+          <p class="others reveal d2" id="others"></p>
+        </div>
+
+        <section aria-labelledby="h-what">
+          <h2 id="h-what" data-i18n="what.title"></h2>
+          <div class="cols">
+            <div><h3 data-i18n="what.spotify.t"></h3><p data-i18n="what.spotify.p"></p></div>
+            <div><h3 data-i18n="what.youtube.t"></h3><p data-i18n="what.youtube.p"></p></div>
+            <div><h3 data-i18n="what.pinterest.t"></h3><p data-i18n="what.pinterest.p"></p></div>
+            <div><h3 data-i18n="what.local.t"></h3><p data-i18n="what.local.p"></p></div>
+          </div>
+          <p class="sources"><span>YouTube</span><span>Spotify</span><span>Pinterest</span><span>SoundCloud</span><span>TikTok</span><span>Instagram</span><span>X</span><span>Reddit</span><span>Vimeo</span><span>Bandcamp</span><span data-i18n="more"></span></p>
+        </section>
+
+        <section id="descargas" aria-labelledby="h-dl">
+          <h2 id="h-dl" data-i18n="dl.title"></h2>
+          <table class="dl">
+            <tbody>
+              <tr><td><a id="dl-mac-arm64" href="#" aria-disabled="true"><span data-i18n="dl.macArm"></span></a></td><td id="size-mac-arm64"></td></tr>
+              <tr><td><a id="dl-mac-x64" href="#" aria-disabled="true"><span data-i18n="dl.macIntel"></span></a></td><td id="size-mac-x64"></td></tr>
+              <tr><td><a id="dl-win-x64" href="#" aria-disabled="true"><span data-i18n="dl.win"></span></a></td><td id="size-win-x64"></td></tr>
+            </tbody>
+          </table>
+          <p class="why" id="version-line"></p>
+        </section>
+
+        <section aria-labelledby="h-install">
+          <h2 id="h-install" data-i18n="inst.title"></h2>
+          <div class="install">
+            <div>
+              <h3>macOS</h3>
+              <ol>
+                <li data-i18n-html="inst.mac1"></li>
+                <li data-i18n-html="inst.mac2"></li>
+                <li data-i18n-html="inst.mac3"></li>
+                <li data-i18n-html="inst.mac4"></li>
+              </ol>
+              <p class="why" data-i18n-html="inst.macCmd" style="margin-top:1.25rem"></p>
+              <pre class="cmd"><code>curl -fsSL https://atrapo.vercel.app/install.sh | bash</code></pre>
+            </div>
+            <div>
+              <h3>Windows</h3>
+              <ol>
+                <li data-i18n-html="inst.win1"></li>
+                <li data-i18n-html="inst.win2"></li>
+                <li data-i18n-html="inst.win3"></li>
+                <li data-i18n-html="inst.win4"></li>
+              </ol>
+            </div>
+          </div>
+          <p class="why" data-i18n="inst.why"></p>
+        </section>
+      </main>
+
+      <footer>
+        <p data-i18n="foot.legal"></p>
+        <p data-i18n="foot.nobrand"></p>
+      </footer>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
