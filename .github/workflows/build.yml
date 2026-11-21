@@ -35,6 +35,14 @@ jobs:
           fi
       - run: npm run build
       - run: node scripts/build-dist.mjs win
+      - name: Smoke test the packaged Windows app (informational)
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          $p = Start-Process -FilePath ".\dist\win-unpacked\Atrapo.exe" -ArgumentList "--self-test" -Wait -PassThru -RedirectStandardOutput smoke.txt -RedirectStandardError smoke-err.txt
+          Get-Content smoke.txt
+          Write-Host "exit code: $($p.ExitCode)"
+          if ($p.ExitCode -ne 0) { Get-Content smoke-err.txt -Tail 30; exit 1 }
       - name: Upload unsigned installer
         id: upload-unsigned
         uses: actions/upload-artifact@v4
