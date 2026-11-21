@@ -1,5 +1,7 @@
 # Atrapo
 
+[Descargar](https://atrapo.vercel.app) · Licencia MIT · [Privacidad](PRIVACY.md) · [Política de firma de código](CODE_SIGNING_POLICY.md)
+
 Aplicación de escritorio (Mac y Windows) para descargar música, vídeo e imágenes pegando un enlace.
 Todo ocurre en el ordenador del usuario: no hay servidor, cuentas ni límites impuestos por nosotros.
 
@@ -64,13 +66,13 @@ npm run dist                         # Mac Apple Silicon, Mac Intel y Windows en
 
 - Se pueden construir los tres desde un Mac. El `.exe` de Windows recibe el icono y la versión con `resedit` (no hace falta Wine).
 - **Sin firmar**: no pagamos los certificados de Apple ni Microsoft. macOS pide "Abrir de todos modos" la primera vez y Windows muestra SmartScreen. La web de descarga lo explica.
-- Los instaladores no caben en un despliegue de Vercel (máx. 100 MB por archivo), así que se alojan en Vercel Blob y la web los enlaza desde `site/version.json`.
+- Los instaladores se publican como *releases* de GitHub: al subir una etiqueta `vX.Y.Z`, GitHub Actions construye Windows (en un Windows real) y los dos Mac, y adjunta los archivos y sus huellas. `site/version.json` apunta a ellos.
 
 ## Publicar una versión
 
-1. Sube `version` en `app/package.json` y construye (`npm run dist`).
-2. Sube los tres instaladores a Blob: `vercel blob put app/dist/<archivo> --access public --pathname downloads/<version>/<archivo> --rw-token <token>`.
-3. Actualiza `site/version.json` (versión, fecha y las tres URLs) y despliega la web: `cd site && vercel deploy --prod`.
+1. Sube `version` en `app/package.json` y haz commit.
+2. `git tag vX.Y.Z && git push origin vX.Y.Z`: GitHub construye y crea la release.
+3. Actualiza `site/version.json` (versión, fecha, URLs de la release y huellas de `SHA256SUMS.txt`) y despliega la web: `cd site && vercel deploy --prod`.
 4. La app consulta `version.json` al abrirse y avisa si hay una versión nueva.
 
 ## Límites conocidos

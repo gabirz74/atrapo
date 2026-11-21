@@ -38,6 +38,7 @@
       "inst.win4": "Sigue el instalador y abre Atrapo desde el menú Inicio.",
       "inst.why": "Atrapo es un proyecto independiente y gratuito, y no paga los certificados de Apple y Microsoft (cientos de euros al año). Por eso tu sistema pide una confirmación la primera vez. El aviso no significa que haya un virus, pero si prefieres no confiar, no la instales.",
       "foot.legal": "Descarga solo contenido que tengas derecho a usar: eres responsable de lo que descargas. Atrapo funciona en tu ordenador y no envía ni guarda tus enlaces ni tus archivos.",
+      "foot.code": "Código abierto (licencia MIT): <a href=\"https://github.com/gabirz74/atrapo\">github.com/gabirz74/atrapo</a>. <a href=\"https://github.com/gabirz74/atrapo/blob/main/CODE_SIGNING_POLICY.md\">Política de firma de código</a>: los instaladores aún no están firmados; se ha solicitado la firma gratuita de SignPath Foundation. <a href=\"https://github.com/gabirz74/atrapo/blob/main/PRIVACY.md\">Privacidad</a>: Atrapo no envía tus datos a ningún sitio.",
       "foot.nobrand": "Atrapo no tiene relación con Spotify, YouTube, Pinterest ni ninguna otra marca citada; sus nombres solo indican con qué enlaces funciona.",
     },
     en: {
@@ -78,6 +79,7 @@
       "inst.win4": "Follow the installer and open Atrapo from the Start menu.",
       "inst.why": "Atrapo is an independent, free project and doesn't pay for Apple and Microsoft certificates (hundreds of euros a year). That's why your system asks for confirmation the first time. The warning doesn't mean there's a virus, but if you'd rather not trust it, don't install it.",
       "foot.legal": "Only download content you have the right to use: you are responsible for what you download. Atrapo runs on your computer and doesn't send or store your links or your files.",
+      "foot.code": "Open source (MIT license): <a href=\"https://github.com/gabirz74/atrapo\">github.com/gabirz74/atrapo</a>. <a href=\"https://github.com/gabirz74/atrapo/blob/main/CODE_SIGNING_POLICY.md\">Code signing policy</a>: the installers are not signed yet; free signing from SignPath Foundation has been requested. <a href=\"https://github.com/gabirz74/atrapo/blob/main/PRIVACY.md\">Privacy</a>: Atrapo sends your data nowhere.",
       "foot.nobrand": "Atrapo is not affiliated with Spotify, YouTube, Pinterest or any other brand mentioned; their names only say which links it works with.",
     },
   };

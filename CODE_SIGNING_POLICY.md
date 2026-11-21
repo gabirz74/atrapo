@@ -1,5 +1,7 @@
 # Code signing policy
 
+> **Status:** free code signing from SignPath Foundation has been requested but is **not active yet**. Until it is approved, the Windows installer is unsigned.
+
 Windows installers of Atrapo are signed with a certificate issued to the **SignPath Foundation**.
 Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org).
 

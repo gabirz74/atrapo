@@ -3,19 +3,19 @@
   "date": "2026-11-21",
   "downloads": {
     "mac-arm64": {
-      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-mac-apple-silicon.dmg",
-      "size": 183923255,
-      "sha256": "12fbf26d83083e07700bb3d594c5cbc09e9358929cdf95d04021ef0c28e8ac40"
+      "url": "https://github.com/gabirz74/atrapo/releases/download/v1.0.1/Atrapo-1.0.1-mac-apple-silicon.dmg",
+      "size": 183950529,
+      "sha256": "65efa6fe6559bc500f179cf60a048ffbe78ef1566e0bf5265724b22b0b79b28e"
     },
     "mac-x64": {
-      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-mac-intel.dmg",
-      "size": 197000940,
-      "sha256": "9820363827d8651ed32c4e9a680607dec334efc8b015e48932bb6d18fe3f1cfe"
+      "url": "https://github.com/gabirz74/atrapo/releases/download/v1.0.1/Atrapo-1.0.1-mac-intel.dmg",
+      "size": 196987960,
+      "sha256": "c8df60f7780b573cfe58e372683260b81af2516e4bcb7b85a817a2021f090bf2"
     },
     "win-x64": {
-      "url": "https://dxdwqevrqzv3jbhi.public.blob.vercel-storage.com/downloads/1.0.1/Atrapo-1.0.1-windows-setup.exe",
-      "size": 171420858,
-      "sha256": "622bd61b215c7c01f88f193b934ac50617fe9b9e616d7e56beba5e81c120580a"
+      "url": "https://github.com/gabirz74/atrapo/releases/download/v1.0.1/Atrapo-1.0.1-windows-setup.exe",
+      "size": 171419636,
+      "sha256": "1213e6c53f17eee99916ca3fbbc0bda0aa3de2dcec19a21b498711ab3d1eca6f"
     }
   }
 }
