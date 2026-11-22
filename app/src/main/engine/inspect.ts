@@ -43,13 +43,13 @@ export async function inspect(rawUrl: string, signal?: AbortSignal): Promise<Pre
       uploader: col.owner,
       thumbnail: col.cover,
       count: col.tracks.length,
-      entries: col.tracks.slice(0, 100).map((t) => ({ title: t.title, uploader: t.artists.join(", "), duration: t.durationMs / 1000, thumbnail: t.cover })),
+      entries: col.tracks.map((t) => ({ title: t.title, uploader: t.artists.join(", "), duration: t.durationMs / 1000, thumbnail: t.cover })),
       audio: { ext: "m4a/opus" },
       partial: col.declared && col.tracks.length < col.declared ? { declared: col.declared, read: col.tracks.length } : undefined,
     };
   } else {
     const info: MediaInfo = parsed.source === "pinterest" ? await inspectPinterest(parsed.url, signal) : await inspectWithYtdlp(parsed.source, parsed.url, signal);
-    base = { ...info, entries: info.entries.slice(0, 100) };
+    base = { ...info, entries: info.entries.slice(0, limits.maxItemsPerJob) };
   }
   const value: Preview = { ...base, url: parsed.url, source: parsed.source, sourceLabel: SOURCE_LABELS[parsed.source], modes: MODES[parsed.source], limit: limits.maxItemsPerJob };
   cache.set(parsed.url, { at: Date.now(), value });

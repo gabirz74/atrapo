@@ -347,8 +347,6 @@ function PreviewBlock({ preview }: { preview: Preview }) {
   if (preview.uploader) meta.push(preview.uploader);
   if (preview.count > 1) meta.push(isPins ? t("meta.files", { n: preview.count }) : preview.source === "spotify" ? t("meta.tracks", { n: preview.count }) : t("meta.items", { n: preview.count }));
   else if (preview.duration) meta.push(formatDuration(preview.duration));
-  const shown = preview.entries.slice(0, 6);
-  const rest = preview.count - shown.length;
 
   return (
     <motion.section
@@ -385,24 +383,27 @@ function PreviewBlock({ preview }: { preview: Preview }) {
         {preview.count > preview.limit && <p className="mt-2 text-sm text-muted">{t("meta.cap", { n: preview.limit })}</p>}
         {preview.partial && <p className="mt-2 text-sm text-danger" role="status">{t("meta.partial", { declared: preview.partial.declared, read: preview.partial.read })}</p>}
         {preview.count > 1 && !isPins && (
-          <>
-            <ol className="mt-6 divide-y divide-line border-y border-line text-[0.95rem]">
-              {shown.map((e, i) => (
-                <li key={i} className="flex items-baseline justify-between gap-4 py-2.5">
-                  <span className="min-w-0 truncate">
-                    {e.title}
-                    {e.uploader && <span className="ml-3 text-muted">{e.uploader}</span>}
-                  </span>
-                  <span className="shrink-0 tabular-nums text-muted">{formatDuration(e.duration)}</span>
-                </li>
-              ))}
-            </ol>
-            {rest > 0 && <p className="mt-2 text-sm text-muted">{t("meta.moreTracks", { n: rest })}</p>}
-          </>
+          // The whole list lives in this box and scrolls inside it, so the page itself stays put.
+          <ol
+            tabIndex={0}
+            aria-label={t("meta.listLabel")}
+            className="scroll-soft selectable mt-6 max-h-[17.5rem] divide-y divide-line overflow-y-auto overscroll-contain border-y border-line pr-1 text-[0.95rem]"
+          >
+            {preview.entries.map((e, i) => (
+              <li key={i} className="flex items-baseline gap-3 py-2.5">
+                <span className="w-9 shrink-0 text-right text-sm tabular-nums text-faint">{i + 1}</span>
+                <span className="min-w-0 flex-1 truncate">
+                  {e.title}
+                  {e.uploader && <span className="ml-3 text-muted">{e.uploader}</span>}
+                </span>
+                <span className="shrink-0 tabular-nums text-muted">{formatDuration(e.duration)}</span>
+              </li>
+            ))}
+          </ol>
         )}
         {isPins && (
-          <div className="mt-6 grid grid-cols-3 gap-2 sm:grid-cols-6">
-            {shown.map((e, i) => (
+          <div tabIndex={0} aria-label={t("meta.listLabel")} className="scroll-soft mt-6 grid max-h-52 grid-cols-3 gap-2 overflow-y-auto overscroll-contain pr-1 sm:grid-cols-6">
+            {preview.entries.map((e, i) => (
               <div key={i} className="relative aspect-square overflow-hidden rounded-lg bg-line">
                 {e.thumbnail && /\.(jpe?g|png|webp)(\?|$)/i.test(e.thumbnail) && <img src={e.thumbnail} alt="" referrerPolicy="no-referrer" loading="lazy" className="size-full object-cover" />}
               </div>

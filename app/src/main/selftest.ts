@@ -5,8 +5,8 @@ import type { Options } from "@shared/types";
 import { inspect } from "./engine/inspect";
 import { tools } from "./engine/paths";
 import { run } from "./engine/proc";
-import { createJob, listJobs } from "./engine/queue";
-import { setSettings } from "./engine/settings";
+import { clearFinished, createJob, listJobs } from "./engine/queue";
+import { flushSettings, getSettings, setSettings } from "./engine/settings";
 import { ensureTools, ytdlpVersion } from "./engine/ytdlp";
 
 /**
@@ -20,6 +20,7 @@ export async function runSelfTest(ui?: () => Promise<string>): Promise<number> {
   const out = path.join(tmpdir(), "atrapo-selftest");
   rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
+  const original = { outputDir: getSettings().outputDir, collectionsAs: getSettings().collectionsAs, history: getSettings().history };
   setSettings({ outputDir: out, collectionsAs: "zip" });
 
   const step = async (name: string, fn: () => Promise<string>) => {
@@ -88,6 +89,10 @@ export async function runSelfTest(ui?: () => Promise<string>): Promise<number> {
 
   const files = existsSync(out) ? readdirSync(out).map((n) => `${n} (${(statSync(path.join(out, n)).size / 1e6).toFixed(1)} MB)`) : [];
   console.log("FILES " + files.join(" | "));
+  // Leave the user's own settings and history exactly as they were.
+  clearFinished();
+  setSettings({ ...original });
+  flushSettings(); // the process exits right after, before the delayed save would run
   console.log(failed ? `SELFTEST FAILED (${failed})` : "SELFTEST OK");
   return failed ? 1 : 0;
 }
