@@ -19,6 +19,8 @@ interface Row {
 }
 
 export interface ScrapedPlaylist {
+  /** How many songs Spotify says the playlist has (can exceed `tracks` when some are local files or unavailable). */
+  declared: number | null;
   title: string;
   owner?: string;
   cover?: string;
@@ -38,10 +40,12 @@ const READ_ROWS = `(() => {
   const grid = first && first.closest('[role="grid"]');
   if (!grid) return null;
   const out = [];
+  const drawn = [];
   for (const r of grid.querySelectorAll('[data-testid="tracklist-row"]')) {
     const a = r.querySelector('a[data-testid="internal-track-link"]');
-    if (!a) continue;
     const idx = parseInt(r.parentElement && r.parentElement.getAttribute('aria-rowindex')) || null;
+    if (idx) drawn.push(idx);
+    if (!a) continue;
     const href = a.getAttribute('href') || '';
     const m = href.match(/track\\/([A-Za-z0-9]+)/);
     const cells = Array.from(r.querySelectorAll('[role="gridcell"]')).map((c) => c.innerText.trim());
@@ -55,14 +59,29 @@ const READ_ROWS = `(() => {
       dur: cells.reverse().find((t) => /^\\d+:\\d{2}$/.test(t)),
     });
   }
-  return { rowcount: parseInt(grid.getAttribute('aria-rowcount')) || null, rows: out };
+  return { rowcount: parseInt(grid.getAttribute('aria-rowcount')) || null, rows: out, drawn };
 })()`;
 
-const SCROLL = `(() => {
+/** Scrolls half a screen (smaller than what Spotify keeps drawn) and reports where it ended up. */
+const SCROLL_STEP = `(() => {
   let e = document.querySelector('[data-testid="tracklist-row"]');
   while (e && !(e.scrollHeight > e.clientHeight + 50 && ['auto','scroll'].includes(getComputedStyle(e).overflowY))) e = e.parentElement;
-  if (e) { e.scrollBy(0, 700); return true; }
-  return false;
+  if (!e) return null;
+  e.scrollBy(0, Math.max(200, Math.round(e.clientHeight * 0.5)));
+  return { top: Math.round(e.scrollTop), max: Math.round(e.scrollHeight - e.clientHeight) };
+})()`;
+
+const SCROLL_TOP = `(() => {
+  let e = document.querySelector('[data-testid="tracklist-row"]');
+  while (e && !(e.scrollHeight > e.clientHeight + 50 && ['auto','scroll'].includes(getComputedStyle(e).overflowY))) e = e.parentElement;
+  if (e) e.scrollTo(0, 0);
+})()`;
+
+/** First and last row position currently drawn: when it changes, Spotify has redrawn the list. */
+const RANGE = `(() => {
+  const idx = Array.from(document.querySelectorAll('[data-testid="tracklist-row"]'))
+    .map((r) => parseInt(r.parentElement && r.parentElement.getAttribute('aria-rowindex'))).filter(Boolean);
+  return idx.length ? idx[0] + '-' + idx[idx.length - 1] : '';
 })()`;
 
 const HEADER = `(() => {
@@ -115,6 +134,13 @@ export async function scrapePlaylist(
       }),
     ]);
 
+    // Test aid: ATRAPO_SLOW_SPOTIFY=6 makes the hidden window 6x slower, like an old computer (set once the page exists).
+    const slow = Number(process.env.ATRAPO_SLOW_SPOTIFY ?? 0);
+    if (slow > 1) {
+      win.webContents.debugger.attach("1.3");
+      await win.webContents.debugger.sendCommand("Emulation.setCPUThrottlingRate", { rate: slow });
+    }
+
     // Wait for the first rows to render.
     let ready = false;
     for (let i = 0; i < 80 && !ready; i++) {
@@ -124,20 +150,51 @@ export async function scrapePlaylist(
     }
     if (!ready) throw new Error("No se pudo abrir la playlist. Comprueba que es pública y que el enlace es correcto.");
 
+    // The list is virtual (Spotify only draws the rows on screen), so we must visit every position.
+    // Row positions run from 2 (1 is the header) to songs + 1.
     const seen = new Map<number, Row>();
+    const drawn = new Set<number>();
     let total: number | null = null;
-    let stale = 0;
-    for (let step = 0; step < 4000 && stale < 10; step++) {
-      alive();
-      const got = await ev<{ rowcount: number | null; rows: Row[] } | null>(READ_ROWS);
-      if (got?.rowcount) total = Math.min(got.rowcount - 1, opts.max); // the header row counts as one
-      const before = seen.size;
-      for (const r of got?.rows ?? []) if (r.id && r.idx && !seen.has(r.idx)) seen.set(r.idx, r);
-      stale = seen.size === before ? stale + 1 : 0;
-      opts.onProgress?.(seen.size, total);
-      if ((total && seen.size >= total) || seen.size >= opts.max) break;
-      await ev<boolean>(SCROLL);
-      await sleep(stale ? 250 : 110);
+    const wanted = () => (total ? Math.min(total, opts.max) : null);
+    const complete = () => {
+      const w = wanted();
+      if (!w) return false;
+      for (let i = 2; i <= w + 1; i++) if (!drawn.has(i)) return false;
+      return true;
+    };
+    const read = async () => {
+      const got = await ev<{ rowcount: number | null; rows: Row[]; drawn: number[] } | null>(READ_ROWS);
+      if (!got) return;
+      if (got.rowcount) total = got.rowcount - 1; // the header row counts as one
+      for (const i of got.drawn) drawn.add(i);
+      for (const r of got.rows) if (r.id && r.idx && !seen.has(r.idx)) seen.set(r.idx, r);
+      opts.onProgress?.(Math.min(drawn.size, wanted() ?? drawn.size), wanted());
+    };
+
+    scan: for (let pass = 0; pass < 4; pass++) {
+      if (pass > 0) {
+        // Something was skipped (a slow computer draws more slowly than we scroll): go back to the top, slower.
+        await ev(SCROLL_TOP);
+        await sleep(500 * pass);
+      }
+      let atBottom = 0;
+      for (let step = 0; step < 3000; step++) {
+        alive();
+        await read();
+        if (complete()) break scan;
+        let before = await ev<string>(RANGE);
+        const pos = await ev<{ top: number; max: number } | null>(SCROLL_STEP);
+        // Wait until the list has been redrawn (longer on later passes) instead of a fixed pause.
+        for (let w = 0; w < 25 * (pass + 1); w++) {
+          await sleep(60);
+          if ((await ev<string>(RANGE)) !== before) break;
+        }
+        await sleep(40 + 60 * pass);
+        if (pos && pos.top >= pos.max - 2) {
+          if (++atBottom >= 3) break; // reached the end of the list
+        } else atBottom = 0;
+        if (!pos) break;
+      }
     }
 
     const head = await ev<{ title: string; cover: string | null }>(HEADER).catch(() => ({ title: "", cover: null }));
@@ -154,7 +211,7 @@ export async function scrapePlaylist(
       durationMs: parseDuration(r.dur),
       cover: bigCover(r.img),
     }));
-    return { title, owner: m?.[2]?.trim(), cover: bigCover(head.cover ?? undefined) ?? tracks[0]?.cover, tracks };
+    return { declared: total, title, owner: m?.[2]?.trim(), cover: bigCover(head.cover ?? undefined) ?? tracks[0]?.cover, tracks };
   } catch (err) {
     if (opts.signal?.aborted) throw new AbortError();
     throw err;

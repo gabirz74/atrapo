@@ -53,6 +53,8 @@ export interface Preview {
   audio?: { ext: string; abr?: number; codec?: string };
   /** Most items a single download will fetch. */
   limit: number;
+  /** Set when the source announces more items than could be read (e.g. a Spotify playlist with unavailable songs). */
+  partial?: { declared: number; read: number };
 }
 
 export type ItemStatus = "queued" | "searching" | "downloading" | "converting" | "done" | "failed";

@@ -59,6 +59,13 @@ export async function runSelfTest(ui?: () => Promise<string>): Promise<number> {
     if (p.count < 5) throw new Error(`only ${p.count} songs`);
     return `${p.count} songs, cover ${p.thumbnail ? "yes" : "no"}`;
   });
+  await step("read a big Spotify playlist completely", async () => {
+    // 279 songs in the playlist; every one must be read (an old reader skipped rows on slow computers).
+    const p = await inspect("https://open.spotify.com/playlist/4y3gkuwFFylCAronhOdXp7");
+    if (p.partial) throw new Error(`Spotify says ${p.partial.declared}, read ${p.partial.read}`);
+    if (p.count < 250) throw new Error(`only ${p.count} songs`);
+    return `${p.count} songs, none missing`;
+  });
   await step("read Pinterest board", async () => {
     const p = await inspect("https://www.pinterest.com/pinterest/official-news/");
     if (p.count < 5) throw new Error(`only ${p.count} files`);

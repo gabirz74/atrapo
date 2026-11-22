@@ -383,6 +383,7 @@ function PreviewBlock({ preview }: { preview: Preview }) {
           </p>
         )}
         {preview.count > preview.limit && <p className="mt-2 text-sm text-muted">{t("meta.cap", { n: preview.limit })}</p>}
+        {preview.partial && <p className="mt-2 text-sm text-danger" role="status">{t("meta.partial", { declared: preview.partial.declared, read: preview.partial.read })}</p>}
         {preview.count > 1 && !isPins && (
           <>
             <ol className="mt-6 divide-y divide-line border-y border-line text-[0.95rem]">

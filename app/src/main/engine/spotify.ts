@@ -23,6 +23,8 @@ export interface SpotifyCollection {
   owner?: string;
   cover?: string;
   tracks: SpotifyTrack[];
+  /** Songs Spotify says the list has, when we could tell (may exceed `tracks`). */
+  declared?: number;
 }
 
 type Raw = Record<string, any>;
@@ -167,7 +169,7 @@ export async function fetchSpotify(
   }
   try {
     const p = await scrapePlaylist(id, { signal: opts.signal, max: limits.maxItemsPerJob, onProgress: opts.onProgress });
-    return { kind, id, title: p.title, owner: p.owner, cover: p.cover, tracks: p.tracks };
+    return { kind, id, title: p.title, owner: p.owner, cover: p.cover, tracks: p.tracks, declared: p.declared ?? undefined };
   } catch (err) {
     if (opts.signal?.aborted) throw err;
     try {

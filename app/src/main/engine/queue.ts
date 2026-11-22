@@ -174,7 +174,8 @@ export async function spotifyCollection(kind: "track" | "album" | "playlist", id
   const hit = spotifyCache.get(key);
   if (hit && Date.now() - hit.at < 10 * 60_000) return hit.value;
   const value = await fetchSpotify(kind, id, { signal, onProgress });
-  cacheSpotify(key, value);
+  // An incomplete read is not worth remembering: asking again should try again.
+  if (!value.declared || value.tracks.length >= value.declared) cacheSpotify(key, value);
   return value;
 }
 
