@@ -3,92 +3,74 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Atrapo — descarga música, vídeo e imágenes</title>
-    <meta name="description" content="Atrapo es una app gratuita para Mac y Windows: pega un enlace y descarga música, vídeo e imágenes en máxima calidad. Todo ocurre en tu ordenador." />
+    <title>Atrapo y Alargo: apps gratuitas para tu música (Mac y Windows)</title>
+    <meta name="description" content="Atrapo descarga. Alargo alarga. Para Mac y Windows, de código abierto, sin cuentas y sin pagar nada. Atrapo: descarga música, vídeo e imágenes. Alargo: versiones extended para DJ." />
+    <link rel="canonical" href="https://atrapo.vercel.app/" />
     <meta name="theme-color" content="#2740f5" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/icon-512.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dos apps gratuitas para tu música." />
+    <meta property="og:description" content="Atrapo descarga. Alargo alarga. Para Mac y Windows, de código abierto, sin cuentas y sin pagar nada. Atrapo: descarga música, vídeo e imágenes. Alargo: versiones extended para DJ." />
+    <meta property="og:url" content="https://atrapo.vercel.app/" />
+    <meta property="og:image" content="https://atrapo.vercel.app/icon-atrapo-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/icon-atrapo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-atrapo-512.png" />
     <link rel="preload" href="/bricolage.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/style.css" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Atrapo", "description": "Una app para Mac y Windows. Pega un enlace de Spotify, YouTube, Pinterest y más, y guarda los archivos originales en tu ordenador. Gratis, sin cuentas y sin el límite de 100 canciones.", "url": "https://atrapo.vercel.app/atrapo", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "image": "https://atrapo.vercel.app/icon-atrapo-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://opensource.org/licenses/MIT"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Alargo", "description": "Una app para Mac y Windows que añade una intro instrumental con ritmo, deja el último estribillo en acapela y te deja ajustarlo todo. Gratis, sin cuentas y con IA que funciona en tu ordenador.", "url": "https://atrapo.vercel.app/alargo", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "image": "https://atrapo.vercel.app/icon-alargo-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://opensource.org/licenses/MIT"}</script>
   </head>
-  <body>
+  <body class="hub" data-page="hub">
     <div class="wrap">
       <header class="top">
-        <a class="brand" href="/"><img src="/icon.svg" alt="" width="26" height="26" />Atrapo</a>
+        <a class="brand" href="/" aria-label="Atrapo y Alargo"><span class="pair"><img src="/icon-atrapo.svg" alt="" width="26" height="26" /><img src="/icon-alargo.svg" alt="" width="26" height="26" /></span></a>
+        <nav class="nav" aria-label="Apps">
+          <a href="/" aria-current="page"><span data-i18n="nav.home">Inicio</span></a>
+          <a href="/atrapo"><span data-i18n="nav.atrapo">Atrapo</span></a>
+          <a href="/alargo"><span data-i18n="nav.alargo">Alargo</span></a>
+        </nav>
         <div class="lang" role="group" aria-label="Idioma / Language">
           <button type="button" data-lang="es" aria-pressed="true">ES</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
       </header>
-
       <main>
-        <div class="hero">
-          <h1 class="sr" data-i18n="h1"></h1>
-          <p class="field" aria-hidden="true"><span class="ph" id="ph">Pega un enlace</span><span class="typed" id="typed"></span><span class="caret"></span></p>
-          <div class="rule"></div>
-          <p class="lede reveal d1" data-i18n="lede"></p>
-          <div class="cta reveal d2">
-            <a class="btn" id="main-dl" href="#descargas" aria-disabled="true"><span id="main-label" data-i18n="dl.default"></span></a>
-            <small id="main-meta"></small>
+        <div class="hub">
+          <h1 class="hub-title" data-i18n="hub.title">Dos apps gratuitas para tu música.</h1>
+          <p class="lede reveal d1" data-i18n="hub.lede">Atrapo descarga. Alargo alarga. Para Mac y Windows, de código abierto, sin cuentas y sin pagar nada.</p>
+          <div class="rows">
+            <article class="row atrapo">
+              <div>
+                <h2><a href="/atrapo">Atrapo</a></h2>
+                <p class="kind" data-i18n="hub.atrapo.kind">Descarga música, vídeo e imágenes pegando un enlace.</p>
+              </div>
+              <div class="side">
+                <p data-i18n="hub.atrapo.p">Playlists enteras de Spotify en un .zip, YouTube en la calidad que quieras y Pinterest en su resolución original.</p>
+                <div class="go"><a class="btn sm" data-main="atrapo" href="/atrapo#descargas"><span data-main-label>Descargar</span></a><a class="more" href="/atrapo"><span data-i18n="hub.more">Saber más</span></a></div>
+              </div>
+            </article>
+            <article class="row alargo">
+              <div>
+                <h2><a href="/alargo">Alargo</a></h2>
+                <p class="kind" data-i18n="hub.alargo.kind">Crea versiones extended de tus canciones.</p>
+              </div>
+              <div class="side">
+                <div class="tl mini" role="img" aria-label="Crea versiones extended de tus canciones.">
+  <div class="tl-bar"><div class="tl-intro"><i style="height:76%"></i><i style="height:69%"></i><i style="height:50%"></i><i style="height:60%"></i><i style="height:51%"></i><i style="height:30%"></i><i style="height:50%"></i><i style="height:64%"></i><i style="height:52%"></i></div><div class="tl-song"><i style="height:63%"></i><i style="height:32%"></i><i style="height:52%"></i><i style="height:52%"></i><i style="height:37%"></i><i style="height:72%"></i><i style="height:86%"></i><i style="height:58%"></i><i style="height:64%"></i><i style="height:67%"></i><i style="height:30%"></i><i style="height:37%"></i><i style="height:67%"></i><i style="height:56%"></i><i style="height:62%"></i><i style="height:90%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:58%"></i><i style="height:45%"></i><i style="height:31%"></i><i style="height:69%"></i><i style="height:80%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:71%"></i></div><div class="tl-acap"><i style="height:31%"></i><i style="height:59%"></i><i style="height:66%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:75%"></i><i style="height:42%"></i><i style="height:46%"></i><i style="height:56%"></i></div></div>
+  <div class="tl-labels"><span data-i18n-html="tl.intro"><b>Intro</b> instrumental</span><span data-i18n-html="tl.song">Tu canción, entera</span><span data-i18n-html="tl.acap"><b>Acapela</b> final</span></div>
+</div>
+                <p style="margin-top:1.1rem"><span data-i18n="hub.alargo.p">Intro instrumental con ritmo, final en acapela y control total sobre cada empalme. Pensada para DJs.</span></p>
+                <div class="go"><a class="btn sm" data-main="alargo" href="/alargo#descargas"><span data-main-label>Descargar</span></a><a class="more" href="/alargo"><span data-i18n="hub.more">Saber más</span></a></div>
+              </div>
+            </article>
           </div>
-          <p class="others reveal d2" id="others"></p>
         </div>
-
-        <section aria-labelledby="h-what">
-          <h2 id="h-what" data-i18n="what.title"></h2>
-          <div class="cols">
-            <div><h3 data-i18n="what.spotify.t"></h3><p data-i18n="what.spotify.p"></p></div>
-            <div><h3 data-i18n="what.youtube.t"></h3><p data-i18n="what.youtube.p"></p></div>
-            <div><h3 data-i18n="what.pinterest.t"></h3><p data-i18n="what.pinterest.p"></p></div>
-            <div><h3 data-i18n="what.local.t"></h3><p data-i18n="what.local.p"></p></div>
-          </div>
-          <p class="sources"><span>YouTube</span><span>Spotify</span><span>Pinterest</span><span>SoundCloud</span><span>TikTok</span><span>Instagram</span><span>X</span><span>Reddit</span><span>Vimeo</span><span>Bandcamp</span><span data-i18n="more"></span></p>
-        </section>
-
-        <section id="descargas" aria-labelledby="h-dl">
-          <h2 id="h-dl" data-i18n="dl.title"></h2>
-          <table class="dl">
-            <tbody>
-              <tr><td><a id="dl-mac-arm64" href="#" aria-disabled="true"><span data-i18n="dl.macArm"></span></a></td><td id="size-mac-arm64"></td></tr>
-              <tr><td><a id="dl-mac-x64" href="#" aria-disabled="true"><span data-i18n="dl.macIntel"></span></a></td><td id="size-mac-x64"></td></tr>
-              <tr><td><a id="dl-win-x64" href="#" aria-disabled="true"><span data-i18n="dl.win"></span></a></td><td id="size-win-x64"></td></tr>
-            </tbody>
-          </table>
-          <p class="why" id="version-line"></p>
-        </section>
-
-        <section aria-labelledby="h-install">
-          <h2 id="h-install" data-i18n="inst.title"></h2>
-          <div class="install">
-            <div>
-              <h3>macOS</h3>
-              <ol>
-                <li data-i18n-html="inst.mac1"></li>
-                <li data-i18n-html="inst.mac2"></li>
-                <li data-i18n-html="inst.mac3"></li>
-                <li data-i18n-html="inst.mac4"></li>
-              </ol>
-              <p class="why" data-i18n-html="inst.macCmd" style="margin-top:1.25rem"></p>
-              <pre class="cmd"><code>curl -fsSL https://atrapo.vercel.app/install.sh | bash</code></pre>
-            </div>
-            <div>
-              <h3>Windows</h3>
-              <ol>
-                <li data-i18n-html="inst.win1"></li>
-                <li data-i18n-html="inst.win2"></li>
-                <li data-i18n-html="inst.win3"></li>
-                <li data-i18n-html="inst.win4"></li>
-              </ol>
-            </div>
-          </div>
-          <p class="why" data-i18n="inst.why"></p>
-        </section>
       </main>
-
       <footer>
-        <p data-i18n-html="foot.code"></p>
-        <p data-i18n="foot.legal"></p>
-        <p data-i18n="foot.nobrand"></p>
+        
+        <p data-i18n-html="foot.code">Código abierto (licencia MIT): <a href="https://github.com/gabirz74/atrapo">Atrapo</a> y <a href="https://github.com/gabirz74/alargo">Alargo</a> en GitHub. Los instaladores aún no están firmados.</p>
+        <p data-i18n-html="foot.privacy">Privacidad: ninguna de las dos apps envía tus datos a ningún sitio. <a href="https://github.com/gabirz74/atrapo/blob/main/PRIVACY.md">Más información</a>.</p>
+        <p data-i18n="foot.nobrand">Atrapo y Alargo no tienen relación con Spotify, YouTube, Pinterest ni ninguna otra marca citada; sus nombres solo indican con qué enlaces funciona Atrapo.</p>
       </footer>
     </div>
     <script src="/app.js"></script>

@@ -125,3 +125,58 @@ pre.cmd { margin: 0.6rem 0 0; padding: 0.85rem 1rem; background: color-mix(in sr
 pre.cmd code { background: none; padding: 0; font-size: 0.9rem; }
 
 footer a { text-underline-offset: 3px; }
+
+/* ---------- sitio unificado ---------- */
+body.alargo { --accent: #4a3df0; }
+@media (prefers-color-scheme: dark) { body.alargo { --accent: #9a92ff; } }
+
+header.top { gap: 1rem; flex-wrap: wrap; }
+.nav { display: flex; align-items: center; gap: 0.2rem; margin-inline: auto 0; flex-wrap: wrap; }
+.nav a { font-size: 0.98rem; font-weight: 500; color: var(--muted); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid transparent; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); border-color: var(--line); }
+.brand .pair { display: inline-flex; }
+.brand .pair img + img { margin-left: -0.45rem; box-shadow: 0 0 0 2px var(--bg); }
+
+/* portada: dos apps, dos filas */
+.hub-title { font-size: clamp(2.4rem, 7.4vw, 5.6rem); font-weight: 600; font-stretch: 92%; letter-spacing: -0.04em; line-height: 1.02; margin: 0; }
+.hub { padding: clamp(2.5rem, 10vh, 6rem) 0 2rem; }
+.rows { margin-top: clamp(2rem, 6vh, 3.5rem); border-top: 2px solid var(--ink); }
+.row { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.5rem 3rem; padding: clamp(1.8rem, 5vw, 3rem) 0; border-bottom: 1px solid var(--line); align-items: center; }
+.row h2 { font-size: clamp(2.6rem, 8vw, 6rem); font-weight: 650; font-stretch: 90%; letter-spacing: -0.045em; line-height: 0.95; margin: 0; }
+.row h2 a { text-decoration: none; }
+.row h2 a:hover { color: var(--accent); }
+.row .kind { color: var(--muted); font-size: 1.2rem; margin-top: 0.8rem; max-width: 30rem; }
+.row .side p { color: var(--muted); max-width: 32rem; }
+.row .go { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; margin-top: 1.4rem; }
+.row .go a.more { font-weight: 600; text-underline-offset: 4px; }
+.row.alargo { --accent: #4a3df0; }
+.row.alargo .btn { background: var(--accent); }
+@media (prefers-color-scheme: dark) { .row.alargo { --accent: #9a92ff; } }
+@media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
+.btn.sm { font-size: 1rem; padding: 0.75rem 1.4rem; }
+
+/* línea de tiempo de Alargo */
+.tl { margin-top: 2.5rem; }
+.tl-bar { display: flex; height: 4.2rem; gap: 3px; align-items: stretch; }
+.tl-bar > div { position: relative; border-radius: 0.6rem; overflow: hidden; background: var(--line); transform-origin: left; animation: grow 1.1s cubic-bezier(0.22, 1, 0.36, 1) both; display: flex; align-items: center; justify-content: space-evenly; padding-inline: 0.5rem; }
+.tl-bar i { display: block; width: 3px; border-radius: 2px; background: currentColor; }
+.tl-intro { flex: 8; color: var(--ink); background: color-mix(in srgb, var(--ink) 14%, transparent) !important; animation-delay: 0.15s !important; }
+.tl-song { flex: 22; color: var(--faint); animation-delay: 0.3s !important; }
+.tl-acap { flex: 8; color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent) !important; animation-delay: 0.45s !important; }
+.tl-labels { display: flex; gap: 3px; margin-top: 0.6rem; font-size: 0.95rem; color: var(--muted); }
+.tl-labels span:nth-child(1) { flex: 8; } .tl-labels span:nth-child(2) { flex: 22; } .tl-labels span:nth-child(3) { flex: 8; }
+.tl-labels b { color: var(--ink); font-weight: 600; }
+@keyframes grow { from { transform: scaleX(0); opacity: 0; } }
+.tl.mini .tl-bar { height: 2.6rem; }
+.tl.mini { margin: 0; }
+.tl.mini .tl-labels { font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { .tl-bar > div { animation: none !important; } }
+
+.steps { counter-reset: s; display: grid; gap: 1.6rem 3rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); padding: 0; margin: 0; list-style: none; }
+.steps li { counter-increment: s; margin: 0; padding: 0; color: var(--muted); }
+.steps li::before { content: counter(s); display: block; font-size: 2.6rem; font-weight: 600; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+.steps li b { display: block; color: var(--ink); font-weight: 600; font-size: 1.15rem; margin-bottom: 0.25rem; }
+table.dl.plain td:first-child { font-weight: 500; }
+.note { margin-top: 1.4rem; color: var(--muted); max-width: 46rem; }
+.row:last-child { border-bottom: 0; }

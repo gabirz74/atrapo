@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atrapo: descarga música, vídeo e imágenes pegando un enlace</title>
+    <meta name="description" content="Una app para Mac y Windows. Pega un enlace de Spotify, YouTube, Pinterest y más, y guarda los archivos originales en tu ordenador. Gratis, sin cuentas y sin el límite de 100 canciones." />
+    <link rel="canonical" href="https://atrapo.vercel.app/atrapo" />
+    <meta name="theme-color" content="#2740f5" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Atrapo: descarga música, vídeo e imágenes pegando un enlace" />
+    <meta property="og:description" content="Una app para Mac y Windows. Pega un enlace de Spotify, YouTube, Pinterest y más, y guarda los archivos originales en tu ordenador. Gratis, sin cuentas y sin el límite de 100 canciones." />
+    <meta property="og:url" content="https://atrapo.vercel.app/atrapo" />
+    <meta property="og:image" content="https://atrapo.vercel.app/icon-atrapo-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/icon-atrapo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-atrapo-512.png" />
+    <link rel="preload" href="/bricolage.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Atrapo", "description": "Una app para Mac y Windows. Pega un enlace de Spotify, YouTube, Pinterest y más, y guarda los archivos originales en tu ordenador. Gratis, sin cuentas y sin el límite de 100 canciones.", "url": "https://atrapo.vercel.app/atrapo", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "image": "https://atrapo.vercel.app/icon-atrapo-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  </head>
+  <body class="atrapo" data-page="atrapo">
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="/" aria-label="Atrapo y Alargo"><span class="pair"><img src="/icon-atrapo.svg" alt="" width="26" height="26" /><img src="/icon-alargo.svg" alt="" width="26" height="26" /></span></a>
+        <nav class="nav" aria-label="Apps">
+          <a href="/"><span data-i18n="nav.home">Inicio</span></a>
+          <a href="/atrapo" aria-current="page"><span data-i18n="nav.atrapo">Atrapo</span></a>
+          <a href="/alargo"><span data-i18n="nav.alargo">Alargo</span></a>
+        </nav>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </header>
+      <main>
+        <div class="hero">
+          <h1 class="sr" data-i18n="a.title">Atrapo: descarga música, vídeo e imágenes pegando un enlace</h1>
+          <p class="field" aria-hidden="true"><span class="ph" id="ph">Pega un enlace</span><span class="typed" id="typed"></span><span class="caret"></span></p>
+          <div class="rule"></div>
+          <p class="lede reveal d1" data-i18n="a.lede">Una app para Mac y Windows. Pega un enlace de Spotify, YouTube, Pinterest y más, y guarda los archivos originales en tu ordenador. Gratis, sin cuentas y sin el límite de 100 canciones.</p>
+          <div class="cta reveal d2">
+            <a class="btn" data-main="atrapo" href="#descargas" aria-disabled="true"><span data-main-label>Descargar</span></a>
+            <small data-main-meta="atrapo"></small>
+          </div>
+          <p class="others reveal d2" data-i18n="dl.others">¿Otro sistema? Mac con Intel, Mac con Apple Silicon o Windows, abajo.</p>
+        </div>
+        <section aria-labelledby="h-what">
+          <h2 data-i18n="a.what.title" id="h-what">Qué hace</h2>
+          <div class="cols">
+            <div><h3 data-i18n="a.what.spotify.t">Playlists enteras de Spotify</h3><p data-i18n="a.what.spotify.p">Pega una playlist de cualquier tamaño y recibe un solo .zip con todas las canciones, con título, artista, álbum y portada.</p></div>
+            <div><h3 data-i18n="a.what.youtube.t">YouTube: vídeo o solo audio</h3><p data-i18n="a.what.youtube.p">Elige la calidad: hasta 4K en vídeo o el audio original sin recomprimir. También MP3, M4A, FLAC, subtítulos y recortes.</p></div>
+            <div><h3 data-i18n="a.what.pinterest.t">Pinterest, en original</h3><p data-i18n="a.what.pinterest.p">Pines, tableros y perfiles con imágenes y vídeos a su resolución original y con el nombre que tenían.</p></div>
+            <div><h3 data-i18n="a.what.local.t">Todo en tu ordenador</h3><p data-i18n="a.what.local.p">No hay servidor ni cuenta. Los archivos van directos a tu carpeta de descargas y nadie más ve lo que bajas.</p></div>
+          </div>
+          <p class="sources"><span>YouTube</span><span>Spotify</span><span>Pinterest</span><span>SoundCloud</span><span>TikTok</span><span>Instagram</span><span>X</span><span>Reddit</span><span>Vimeo</span><span>Bandcamp</span><span data-i18n="a.more">y más</span></p>
+        </section>
+        <section id="descargas" aria-labelledby="h-dl">
+          <h2 data-i18n="dl.title" id="h-dl">Descargas</h2>
+          <table class="dl"><tbody><tr><td><a href="#" data-dl="atrapo:mac-arm64" aria-disabled="true"><span data-i18n="dl.macArm">Mac con Apple Silicon (M1 o posterior)</span></a></td><td data-size="atrapo:mac-arm64"></td></tr><tr><td><a href="#" data-dl="atrapo:mac-x64" aria-disabled="true"><span data-i18n="dl.macIntel">Mac con Intel</span></a></td><td data-size="atrapo:mac-x64"></td></tr><tr><td><a href="#" data-dl="atrapo:win-x64" aria-disabled="true"><span data-i18n="dl.win">Windows 10 y 11 (64 bits)</span></a></td><td data-size="atrapo:win-x64"></td></tr></tbody></table>
+          <p class="why"><span data-version="atrapo"></span> <span data-i18n="a.update">Atrapo actualiza solo su motor de descargas; cuando haya una versión nueva de la app te lo avisará dentro de ella.</span></p>
+        </section>
+        <section aria-labelledby="h-install">
+          <h2 data-i18n="inst.title" id="h-install">La primera vez que la abres</h2>
+          <div class="install">
+            <div>
+              <h3>macOS</h3>
+              <ol><li data-i18n-html="inst.mac1">Abre el archivo <code>.dmg</code> y arrastra la app a la carpeta Aplicaciones.</li><li data-i18n-html="inst.mac2">Ábrela desde Aplicaciones. macOS dirá que no puede verificarla: pulsa <b>Hecho</b>. (En macOS 14 o anterior: clic derecho sobre la app, <b>Abrir</b>.)</li><li data-i18n-html="inst.mac3">Ve a <b>Ajustes del Sistema, Privacidad y seguridad</b>, baja hasta el aviso de la app y pulsa <b>Abrir de todos modos</b>.</li><li data-i18n-html="inst.mac4">Confirma con tu contraseña. Solo hace falta esta primera vez.</li></ol>
+              <p class="why" data-i18n-html="inst.macCmd" style="margin-top:1.25rem">Sin ningún aviso: abre la app <b>Terminal</b>, pega esta línea y pulsa Intro. Descarga, comprueba e instala la app por ti.</p>
+              <pre class="cmd"><code>curl -fsSL https://atrapo.vercel.app/install.sh | bash</code></pre>
+            </div>
+            <div>
+              <h3>Windows</h3>
+              <ol><li data-i18n-html="inst.win1">Ejecuta el instalador <code>.exe</code> que has descargado.</li><li data-i18n-html="inst.win2">Si aparece «Windows protegió su PC», pulsa <b>Más información</b> y luego <b>Ejecutar de todas formas</b>.</li><li data-i18n-html="inst.win3">Si Windows 11 dice «Control Inteligente de Aplicaciones bloqueó una aplicación», ese aviso no tiene botón para continuar. Abre <b>Seguridad de Windows, Control de aplicaciones y navegador, Configuración del Control inteligente de aplicaciones</b> y elige <b>Desactivado</b>. Ojo: una vez desactivado no se puede volver a activar sin reinstalar Windows. Después ejecuta el instalador otra vez.</li><li data-i18n-html="inst.win4">Sigue el instalador y abre la app desde el menú Inicio.</li></ol>
+            </div>
+          </div>
+          <p class="why" data-i18n="inst.why">Son proyectos independientes y gratuitos, y no pagan los certificados de Apple y Microsoft (cientos de euros al año). Por eso tu sistema pide una confirmación la primera vez. El aviso no significa que haya un virus, pero si prefieres no confiar, no las instales.</p>
+        </section>
+      </main>
+      <footer>
+        <p data-i18n="a.legal">Descarga solo contenido que tengas derecho a usar: eres responsable de lo que descargas. Atrapo funciona en tu ordenador y no envía ni guarda tus enlaces ni tus archivos.</p>
+        <p data-i18n-html="foot.code">Código abierto (licencia MIT): <a href="https://github.com/gabirz74/atrapo">Atrapo</a> y <a href="https://github.com/gabirz74/alargo">Alargo</a> en GitHub. Los instaladores aún no están firmados.</p>
+        <p data-i18n-html="foot.privacy">Privacidad: ninguna de las dos apps envía tus datos a ningún sitio. <a href="https://github.com/gabirz74/atrapo/blob/main/PRIVACY.md">Más información</a>.</p>
+        <p data-i18n="foot.nobrand">Atrapo y Alargo no tienen relación con Spotify, YouTube, Pinterest ni ninguna otra marca citada; sus nombres solo indican con qué enlaces funciona Atrapo.</p>
+      </footer>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
