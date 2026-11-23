@@ -104,6 +104,8 @@ L = {
  "l.f8.p": ("El archivo exportado conserva la portada de la canción, con una franja «EXTENDED» opcional para distinguirlo del original.", "The exported file keeps the song's cover art, with an optional “EXTENDED” strip to tell it apart from the original."),
  "l.f9.t": ("Tú eliges la melodía de la intro", "You choose the intro's melody"),
  "l.f9.p": ("La IA propone un trozo, pero puedes marcar con el ratón el que quieras o elegir entre las melodías que más se repiten. Incluso mezclar la batería, el bajo y la melodía de partes distintas.", "The AI suggests a section, but you can pick any with the mouse or choose among the most repeated melodies. You can even mix drums, bass and melody from different parts."),
+ "l.f10.t": ("Corta lo que sobra", "Cut what you don't need"),
+ "l.f10.p": ("Quita partes de la canción o huecos sin sonido con el ratón, y mira los tiempos (kicks) en rojo sobre la onda, como en tu programa de DJ.", "Remove parts of the song or silent gaps with the mouse, and see the beats (kicks) in red over the waveform, like in your DJ software."),
  "l.first.title": ("Antes de empezar", "Before you start"),
  "l.first.p": ("La app pesa unos 140 MB. La primera vez descarga su motor de IA, una sola vez: unos 2,2 GB en calidad alta o 1,6 GB en calidad rápida. Después funciona sin internet. Cada canción analizada guarda sus pistas (80–150 MB) hasta que la quitas de la biblioteca, y en Ajustes puedes desinstalar el motor.", "The app is about 140 MB. The first time it downloads its AI engine, once: about 2.2 GB in high quality or 1.6 GB in fast quality. After that it works offline. Each analysed song keeps its stems (80–150 MB) until you remove it from the library, and in Settings you can uninstall the engine."),
  "l.first.p2": ("En un Windows sin tarjeta gráfica el análisis tarda más: elige la calidad rápida en Ajustes.", "On a Windows PC without a graphics card analysis takes longer: choose fast quality in Settings."),
@@ -325,6 +327,7 @@ t += f'''        <div class="hero">
             <div>{I('l.f7.t','h3')}{I('l.f7.p','p')}</div>
             <div>{I('l.f8.t','h3')}{I('l.f8.p','p')}</div>
             <div>{I('l.f9.t','h3')}{I('l.f9.p','p')}</div>
+            <div>{I('l.f10.t','h3')}{I('l.f10.p','p')}</div>
           </div>
         </section>
         <section aria-labelledby="h-first">
