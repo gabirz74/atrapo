@@ -98,6 +98,10 @@ L = {
  "l.f5.p": ("Deshacer, rehacer y volver a la sugerencia de la IA cuando quieras. Lo que oyes es lo que exportas.", "Undo, redo and go back to the AI suggestion any time. What you hear is what you export."),
  "l.f6.t": ("Privada y sin límites", "Private and unlimited"),
  "l.f6.p": ("Los modelos de IA son de código abierto y se ejecutan en tu ordenador. Sin cuentas, sin suscripción, sin subir nada.", "The AI models are open source and run on your computer. No accounts, no subscription, nothing uploaded."),
+ "l.f7.t": ("Efectos de DJ", "DJ effects"),
+ "l.f7.p": ("Filtros que se abren, subidas de ruido, golpes de entrada, eco y reverb al final… con estilos Suave e Intenso y cada efecto ajustable.", "Opening filters, noise risers, entry hits, echo and reverb at the end… with Soft and Intense styles and every effect adjustable."),
+ "l.f8.t": ("Con su portada", "With its cover art"),
+ "l.f8.p": ("El archivo exportado conserva la portada de la canción, con una franja «EXTENDED» opcional para distinguirlo del original.", "The exported file keeps the song's cover art, with an optional “EXTENDED” strip to tell it apart from the original."),
  "l.first.title": ("Antes de empezar", "Before you start"),
  "l.first.p": ("La app pesa unos 140 MB. La primera vez descarga su motor de IA, una sola vez: unos 2,2 GB en calidad alta o 1,6 GB en calidad rápida. Después funciona sin internet. Cada canción analizada guarda sus pistas (80–150 MB) hasta que la quitas de la biblioteca, y en Ajustes puedes desinstalar el motor.", "The app is about 140 MB. The first time it downloads its AI engine, once: about 2.2 GB in high quality or 1.6 GB in fast quality. After that it works offline. Each analysed song keeps its stems (80–150 MB) until you remove it from the library, and in Settings you can uninstall the engine."),
  "l.first.p2": ("En un Windows sin tarjeta gráfica el análisis tarda más: elige la calidad rápida en Ajustes.", "On a Windows PC without a graphics card analysis takes longer: choose fast quality in Settings."),
@@ -316,6 +320,8 @@ t += f'''        <div class="hero">
             <div>{I('l.f4.t','h3')}{I('l.f4.p','p')}</div>
             <div>{I('l.f5.t','h3')}{I('l.f5.p','p')}</div>
             <div>{I('l.f6.t','h3')}{I('l.f6.p','p')}</div>
+            <div>{I('l.f7.t','h3')}{I('l.f7.p','p')}</div>
+            <div>{I('l.f8.t','h3')}{I('l.f8.p','p')}</div>
           </div>
         </section>
         <section aria-labelledby="h-first">

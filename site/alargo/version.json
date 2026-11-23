@@ -1,21 +1,21 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "date": "2026-11-23",
   "downloads": {
     "mac-arm64": {
-      "url": "https://github.com/gabirz74/alargo/releases/download/v1.1.0/Alargo-1.1.0-mac-arm64.dmg",
-      "size": 134281969,
-      "sha256": "59beff0291f597f1e5cc1fa77acc539acfe221b817c613d92086eb36ac9e0c3e"
+      "url": "https://github.com/gabirz74/alargo/releases/download/v1.2.0/Alargo-1.2.0-mac-arm64.dmg",
+      "size": 134293633,
+      "sha256": "9ff1fdde2feac29b27d7b518fca387daa31217edd61293dda8c6027ac99b3ef3"
     },
     "mac-x64": {
-      "url": "https://github.com/gabirz74/alargo/releases/download/v1.1.0/Alargo-1.1.0-mac-x64.dmg",
-      "size": 144102145,
-      "sha256": "73e45e107ac6394f6e46e9a8c0bdff39cbde32e150fb41570c830535071e2c7a"
+      "url": "https://github.com/gabirz74/alargo/releases/download/v1.2.0/Alargo-1.2.0-mac-x64.dmg",
+      "size": 144114969,
+      "sha256": "653e8fa1774f1f47a31e07565da8e1d61c2d17f7f756308646df4e829f017f38"
     },
     "win-x64": {
-      "url": "https://github.com/gabirz74/alargo/releases/download/v1.1.0/Alargo-Setup-1.1.0.exe",
-      "size": 132748899,
-      "sha256": "a6fc4eb119a13b7ed2490056d03a336d37d2e123deaf0f58ba521fbd67834606"
+      "url": "https://github.com/gabirz74/alargo/releases/download/v1.2.0/Alargo-Setup-1.2.0.exe",
+      "size": 132756700,
+      "sha256": "37f624dd015c61d7c19dea6f4275461f1cab015288c71db4fd30a6a936c09d8c"
     }
   }
 }
