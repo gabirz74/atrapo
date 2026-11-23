@@ -99,7 +99,7 @@ L = {
  "l.f6.t": ("Privada y sin límites", "Private and unlimited"),
  "l.f6.p": ("Los modelos de IA son de código abierto y se ejecutan en tu ordenador. Sin cuentas, sin suscripción, sin subir nada.", "The AI models are open source and run on your computer. No accounts, no subscription, nothing uploaded."),
  "l.f7.t": ("Efectos de DJ", "DJ effects"),
- "l.f7.p": ("Filtros que se abren, subidas de ruido, platillos invertidos, golpes de entrada, eco y reverb al final… con estilos Suave, Intenso y Épico (reggaetón y club) y cada efecto ajustable.", "Opening filters, noise risers, reverse cymbals, entry hits, echo and reverb at the end… with Soft, Intense and Epic (reggaeton and club) styles and every effect adjustable."),
+ "l.f7.p": ("Filtros que se abren, subidas de ruido, platillos invertidos, golpes de entrada, eco y reverb al final, y un efecto justo antes de la acapela para que no entre de golpe… con estilos Suave, Intenso y Épico (reggaetón y club) y cada efecto ajustable.", "Opening filters, noise risers, reverse cymbals, entry hits, echo and reverb at the end, and an effect right before the acapella so it doesn't hit abruptly… with Soft, Intense and Epic (reggaeton and club) styles and every effect adjustable."),
  "l.f8.t": ("Con su portada", "With its cover art"),
  "l.f8.p": ("El archivo exportado conserva la portada de la canción, con una franja «EXTENDED» opcional para distinguirlo del original.", "The exported file keeps the song's cover art, with an optional “EXTENDED” strip to tell it apart from the original."),
  "l.f9.t": ("Tú eliges la melodía de la intro", "You choose the intro's melody"),
